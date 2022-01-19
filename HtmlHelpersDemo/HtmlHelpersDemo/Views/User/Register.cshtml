@@ -1,0 +1,71 @@
+﻿@model HtmlHelpersDemo.Models.Register
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Save", "User", FormMethod.Post))
+        {
+            <div>
+                @*@Html.Label("User ID:")*@
+                @Html.LabelFor(m => m.UserId)
+                @Html.TextBoxFor(m => m.UserId, new { style = "color:red", placeholder = "Enter UserId" })
+            </div>
+            <br />
+            <div>
+                @Html.Label("Name:")
+                @Html.TextBoxFor(m => m.UserName, new { style = "color:green", placeholder = "Enter User Name" })
+            </div>
+            <br />
+            <div>
+                @Html.Label("Date of Birth:")
+                @Html.TextBoxFor(m => m.DateOfBirth, new { style = "color:green", type = "Date" })
+            </div>
+            <br />
+            <div>
+                @Html.Label("Male:")
+                @Html.RadioButtonFor(m => m.Gender, "Male", new { style = "color:green" })
+                @Html.Label("Female:")
+                @Html.RadioButtonFor(m => m.Gender, "Female", new { style = "color:green" })
+            </div>
+            <br />
+            <div>
+                @Html.Label("Email:")
+                @Html.TextBoxFor(m => m.Email, new { style = "color:green" })
+            </div>
+            <br />
+            <div>
+                @Html.Label("Password:")
+                @Html.TextBoxFor(m => m.Password, new { style = "color:red", type = "Password" })
+            </div>
+            <br />
+            <div>
+                @Html.Label("Country:")
+                @Html.DropDownListFor(m => m.Country, (List<SelectListItem>)ViewBag.country)
+            </div>
+            <br />
+            <div>
+                @Html.Label("Terms:")
+                @Html.CheckBoxFor(m => m.Terms);
+            </div>
+            <br />
+            <input type="submit" value="Register" /><br />
+           
+                if (ViewBag.msg != null)
+                {
+                    <p style="color:red">@ViewBag.msg</p>
+                }
+            
+
+        }
+    </div>
+</body>
+</html>
